@@ -4,11 +4,27 @@ import pandas as pd
 
 #Data Source
 import yfinance as yf
+import plotly.graph_objs as pt
 
-#Ask for which input 
-print ('Let\'s get started!')
-stock_code=input('Please enter Stock Code:').upper()
+def get_filters():
+    """
+    Asks user to input code, period and interval for stock
 
-# Get dataADA-
-data = yf.download(tickers=stock_code, period = '1d', interval = '15m')
-print(data)
+    """
+    print ('Let\'s get started!')
+    code=input('Please enter Stock Code:').upper()
+    period=input('Please enter Period:').lower()
+    interval=input('Please enter Interval:').lower()
+    return code, period, interval
+
+def finance_data(code, period, interval):
+    data = yf.download(tickers=code, period=period, interval=interval)
+    print(data)
+    return ()
+
+def main():
+        code, period, interval = get_filters()
+        finance_data(code, period, interval)
+      
+if __name__ == "__main__":
+    main()
